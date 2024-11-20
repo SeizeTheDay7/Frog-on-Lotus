@@ -3084,7 +3084,7 @@ GameObject:
   - component: {fileID: 1318482553}
   m_Layer: 0
   m_Name: SpawnArea
-  m_TagString: Untagged
+  m_TagString: SpawnArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3492,7 +3492,7 @@ Transform:
   m_GameObject: {fileID: 2060826470}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.05, y: -0.35, z: 0}
+  m_LocalPosition: {x: 1.23, y: -3.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3507,10 +3507,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2060826470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3b422d0fccc73142b14bf954601b1ae, type: 3}
+  m_Script: {fileID: 11500000, guid: b335de795f0d4434d99b49ccec1f43f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnArea: {fileID: 1318482552}
+  Center: {x: 0, y: 0, z: 0}
+  speed: 20
+  grav: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
