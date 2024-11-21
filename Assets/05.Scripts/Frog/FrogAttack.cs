@@ -22,6 +22,7 @@ public class FrogAttack : MonoBehaviour
     private float targetLength;
     [SerializeField] private float tongueSpeed = 10f;
     private bool nowRight;
+    private CircleCollider2D tongueCollider;
 
     void Awake()
     {
@@ -35,6 +36,10 @@ public class FrogAttack : MonoBehaviour
 
         frogSR = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+
+        // 콜라이더 크기 0으로 초기화
+        tongueCollider = tongue.GetComponent<CircleCollider2D>();
+        tongueCollider.radius = 0;
     }
 
     // 혀의 위치로부터 마우스 클릭 위치까지 각도를 구한 뒤에,
@@ -63,9 +68,11 @@ public class FrogAttack : MonoBehaviour
             mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             FlipCharacter();
             tonguePos = tongue.position;
+
             direction = mousePos - tonguePos;
             direction.z = 0; // magnitude 왜곡 방지
             targetLength = direction.magnitude;
+
             angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
             // Debug.Log("tongePos : " + tonguePos);
@@ -75,9 +82,13 @@ public class FrogAttack : MonoBehaviour
             // 각도만큼 혀를 돌린다
             tongue.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
+            // 애니메이션을 위한 변수들 설정
             isAttacking = true;
             animator.SetBool("isAttacking", true);
             arrivedPoint = false;
+
+            // 혀로 파리 붙잡을 콜라이더 만들기
+            tongueCollider.radius = 0.22f;
         }
     }
 
@@ -90,6 +101,7 @@ public class FrogAttack : MonoBehaviour
         }
 
         tongueSR.size = new Vector2(tongueSR.size.x + tongueSpeed * targetLength * Time.deltaTime, tongueSR.size.y);
+        tongueCollider.offset = new Vector2(tongueCollider.offset.x + tongueSpeed * targetLength * Time.deltaTime, 0);
     }
 
     private void ShrinkTongue()
@@ -99,10 +111,13 @@ public class FrogAttack : MonoBehaviour
             isAttacking = false;
             animator.SetBool("isAttacking", false);
             tongueSR.size = new Vector2(0, tongueSR.size.y);
+            tongueCollider.radius = 0f; // 콜라이더 크기 0으로 돌려놓기
+            tongueCollider.offset = new Vector2(0, 0);
             return;
         }
 
         tongueSR.size = new Vector2(tongueSR.size.x - tongueSpeed * targetLength * Time.deltaTime, tongueSR.size.y);
+        tongueCollider.offset = new Vector2(tongueCollider.offset.x - tongueSpeed * targetLength * Time.deltaTime, 0);
     }
 
     private void FlipCharacter()
