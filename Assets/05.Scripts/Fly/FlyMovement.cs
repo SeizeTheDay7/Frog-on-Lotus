@@ -31,7 +31,7 @@ public class RandomFlying : MonoBehaviour
         {
             sec_count = 0;
             Center = RandomCenter();
-            speed = RandomChoice(20, -20);
+            speed = RandomChoice((int)speed, -(int)speed);
             // Debug.Log("New Center : " + Center);
         }
 
@@ -52,5 +52,10 @@ public class RandomFlying : MonoBehaviour
     int RandomChoice(int value1, int value2)
     {
         return Random.Range(0, 2) == 0 ? value1 : value2;
+    }
+
+    private void OnTriggerEnter2D(Collider2D fly)
+    {
+        transform.position = fly.gameObject.transform.position;
     }
 }

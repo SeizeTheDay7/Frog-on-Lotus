@@ -23,6 +23,7 @@ public class FrogAttack : MonoBehaviour
     [SerializeField] private float tongueSpeed = 10f;
     private bool nowRight;
     private CircleCollider2D tongueCollider;
+    private GameObject catchedBug;
 
     void Awake()
     {
@@ -41,6 +42,14 @@ public class FrogAttack : MonoBehaviour
         tongueCollider = tongue.GetComponent<CircleCollider2D>();
         tongueCollider.radius = 0;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Trigger entered by: " + other.gameObject.name);
+        arrivedPoint = true;
+        catchedBug = other.gameObject;
+    }
+
 
     // 혀의 위치로부터 마우스 클릭 위치까지 각도를 구한 뒤에,
     // 각도만큼 돌린 후에 거리만큼 늘리면 됨.
@@ -113,6 +122,10 @@ public class FrogAttack : MonoBehaviour
             tongueSR.size = new Vector2(0, tongueSR.size.y);
             tongueCollider.radius = 0f; // 콜라이더 크기 0으로 돌려놓기
             tongueCollider.offset = new Vector2(0, 0);
+
+            if (catchedBug != null)
+                Destroy(catchedBug);
+
             return;
         }
 
