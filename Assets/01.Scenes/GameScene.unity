@@ -2130,13 +2130,14 @@ GameObject:
   - component: {fileID: 167138249}
   - component: {fileID: 167138248}
   - component: {fileID: 167138247}
+  - component: {fileID: 167138251}
   m_Layer: 5
   m_Name: StartGameUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &167138247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2220,6 +2221,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &167138251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167138246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a8a45a603ad68148b23359eebbe09e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &198931913
 GameObject:
   m_ObjectHideFlags: 0

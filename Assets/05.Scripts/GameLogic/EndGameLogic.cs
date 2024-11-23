@@ -21,8 +21,8 @@ public class EndGameLogic : MonoBehaviour
 
     private void Restart()
     {
-        RemoveEndThings();
         GameManager.Instance.GameStart();
+        Destroy(gameObject);
     }
 
     private void Exit()
@@ -32,12 +32,6 @@ public class EndGameLogic : MonoBehaviour
 #else
             Application.Quit();
 #endif
-    }
-
-    private void RemoveEndThings()
-    {
-        RestartButton.onClick.RemoveAllListeners();
-        ExitButton.onClick.RemoveAllListeners();
     }
 
 }

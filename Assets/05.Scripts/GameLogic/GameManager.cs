@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     {
         Instance = this; // 현재 인스턴스를 정적 변수에 할당
         Score = 0;
-        GameStart();
     }
 
     public void GameStart()

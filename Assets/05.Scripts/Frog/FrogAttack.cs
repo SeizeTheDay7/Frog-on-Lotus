@@ -38,14 +38,15 @@ public class FrogAttack : MonoBehaviour
         frogSR = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
-        // 콜라이더 크기 0으로 초기화
         tongueCollider = tongue.GetComponent<CircleCollider2D>();
-        tongueCollider.radius = 0;
+
+        // 콜라이더 비활성화
+        tongueCollider.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger entered by: " + other.gameObject.name);
+        // Debug.Log("Trigger entered by: " + other.gameObject.name);
         GameManager.Instance.AddScore();
         arrivedPoint = true;
         catchedBug = other.gameObject;
@@ -97,8 +98,8 @@ public class FrogAttack : MonoBehaviour
             animator.SetBool("isAttacking", true);
             arrivedPoint = false;
 
-            // 혀로 파리 붙잡을 콜라이더 만들기
-            tongueCollider.radius = 0.22f;
+            // 혀로 파리 붙잡을 콜라이더 활성화
+            tongueCollider.enabled = true;
         }
     }
 
@@ -121,8 +122,8 @@ public class FrogAttack : MonoBehaviour
             isAttacking = false;
             animator.SetBool("isAttacking", false);
             tongueSR.size = new Vector2(0, tongueSR.size.y);
-            tongueCollider.radius = 0f; // 콜라이더 크기 0으로 돌려놓기
             tongueCollider.offset = new Vector2(0, 0);
+            tongueCollider.enabled = false;
 
             // if (catchedBug != null)
             // {
