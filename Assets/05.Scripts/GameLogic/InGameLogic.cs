@@ -25,6 +25,7 @@ public class InGameLogic : MonoBehaviour
 
         holeBounds = holeArea.GetComponent<SpriteRenderer>().bounds;
         outerBounds = outerArea.GetComponent<SpriteRenderer>().bounds;
+        NewFly();
     }
 
     void Update()
@@ -43,7 +44,11 @@ public class InGameLogic : MonoBehaviour
 
     public void NewFly()
     {
-        Instantiate(fly, GetRandomSpawnPosition(), Quaternion.identity);
+        while (GameManager.Instance.flyCount < GameManager.Instance.difficulty)
+        {
+            GameManager.Instance.flyCount += 1;
+            Instantiate(fly, GetRandomSpawnPosition(), Quaternion.identity);
+        }
     }
 
     private Vector2 GetRandomSpawnPosition()
@@ -56,12 +61,6 @@ public class InGameLogic : MonoBehaviour
         new Vector2(Random.Range(holeBounds.min.x, holeBounds.max.x), Random.Range(outerBounds.min.y, holeBounds.min.y)), // 아래
         new Vector2(Random.Range(holeBounds.min.x, holeBounds.max.x), Random.Range(holeBounds.max.y, outerBounds.max.y)) // 위
         };
-
-        Debug.Log("InGameLogic :: corners : " + corners);
-        foreach (Vector2 Corner in corners)
-        {
-            Debug.Log("InGameLogic :: corner : " + Corner);
-        }
 
         // 랜덤하게 하나의 구역에서 위치 선택
         return corners[Random.Range(0, corners.Length)];

@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance; // 전역 접근용 정적 변수
     public int Score;
+    public int flyCount;
     public int difficulty;
     [SerializeField] private GameObject InGameManager;
     private InGameLogic inGameLogic;
@@ -16,21 +17,22 @@ public class GameManager : MonoBehaviour
     {
         Instance = this; // 현재 인스턴스를 정적 변수에 할당
         Score = 0;
-        difficulty = (int)Mathf.Log(Score, 2);
+        SetDifficulty();
     }
 
     public void GameStart()
     {
         Debug.Log("GameManager :: Game Start!");
         Score = 0;
-        difficulty = (int)Mathf.Log(Score, 2);
+        SetDifficulty();
         inGameLogic = Instantiate(InGameManager).GetComponent<InGameLogic>();
     }
 
     public void AddScore()
     {
         Score += 1;
-        difficulty = (int)Mathf.Log(Score, 2);
+        flyCount -= 1;
+        SetDifficulty();
         inGameLogic.NewFly();
     }
 
@@ -38,5 +40,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("GameManager :: Game End!");
         Instantiate(EndGameManager);
+    }
+
+    private void SetDifficulty()
+    {
+        difficulty = 1 + (int)Mathf.Log(1 + Score, 2f);
+        Debug.Log("GameManager :: difficulty : " + difficulty);
     }
 }

@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Center: {x: 0, y: 0, z: 0}
-  speed: 4
-  grav: 2
+  speed: 20
+  grav: 10
 --- !u!58 &1094339562621739989
 CircleCollider2D:
   m_ObjectHideFlags: 0

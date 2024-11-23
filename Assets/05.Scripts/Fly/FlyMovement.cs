@@ -19,6 +19,8 @@ public class RandomFlying : MonoBehaviour
         sec_count = 0;
         flyingArea = GameObject.FindWithTag("flyingArea");
         flyingBounds = flyingArea.GetComponent<SpriteRenderer>().bounds;
+        speed = 5 * GameManager.Instance.difficulty;
+        speed = RandomChoice((int)speed, -(int)speed);
         Center = RandomCenter();
     }
 
@@ -31,6 +33,7 @@ public class RandomFlying : MonoBehaviour
         {
             sec_count = 0;
             Center = RandomCenter();
+            speed = 5 * GameManager.Instance.difficulty;
             speed = RandomChoice((int)speed, -(int)speed);
             // Debug.Log("New Center : " + Center);
         }
@@ -38,7 +41,7 @@ public class RandomFlying : MonoBehaviour
         // 중심에 대해 원운동 시키기
         fall_v = (Center - transform.position).normalized;
         moving_v = new Vector3(-fall_v.y, fall_v.x) * speed;
-        fall_v *= grav;
+        fall_v *= Mathf.Abs(speed / 2);
         transform.position += (moving_v + fall_v) * Time.deltaTime;
     }
 
