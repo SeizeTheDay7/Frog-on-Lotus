@@ -10,15 +10,15 @@ public class RandomFlying : MonoBehaviour
     [SerializeField] private float speed = 20f;
     [SerializeField] private float grav = 10f;
     private float sec_count;
-    private GameObject SpawnArea;
-    private Bounds SpawnBounds;
+    private GameObject flyingArea;
+    private Bounds flyingBounds;
 
     // Start is called before the first frame update
     void Start()
     {
         sec_count = 0;
-        SpawnArea = GameObject.FindWithTag("SpawnArea");
-        SpawnBounds = SpawnArea.GetComponent<SpriteRenderer>().bounds;
+        flyingArea = GameObject.FindWithTag("flyingArea");
+        flyingBounds = flyingArea.GetComponent<SpriteRenderer>().bounds;
         Center = RandomCenter();
     }
 
@@ -44,8 +44,8 @@ public class RandomFlying : MonoBehaviour
 
     private Vector3 RandomCenter()
     {
-        float randomX = Random.Range(SpawnBounds.min.x, SpawnBounds.max.x);
-        float randomY = Random.Range(SpawnBounds.min.y, SpawnBounds.max.y);
+        float randomX = Random.Range(flyingBounds.min.x, flyingBounds.max.x);
+        float randomY = Random.Range(flyingBounds.min.y, flyingBounds.max.y);
         return new Vector3(randomX, randomY, 0);
     }
 
