@@ -54,8 +54,9 @@ public class RandomFlying : MonoBehaviour
         return Random.Range(0, 2) == 0 ? value1 : value2;
     }
 
-    private void OnTriggerEnter2D(Collider2D fly)
+    private void OnTriggerEnter2D(Collider2D tongue)
     {
-        transform.position = fly.gameObject.transform.position;
+        if (tongue.gameObject.name == "tongue")
+            Destroy(gameObject);
     }
 }

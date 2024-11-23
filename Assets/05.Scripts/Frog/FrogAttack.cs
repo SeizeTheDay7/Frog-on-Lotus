@@ -46,6 +46,7 @@ public class FrogAttack : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Trigger entered by: " + other.gameObject.name);
+        GameManager.Instance.AddScore();
         arrivedPoint = true;
         catchedBug = other.gameObject;
     }
@@ -123,8 +124,10 @@ public class FrogAttack : MonoBehaviour
             tongueCollider.radius = 0f; // 콜라이더 크기 0으로 돌려놓기
             tongueCollider.offset = new Vector2(0, 0);
 
-            if (catchedBug != null)
-                Destroy(catchedBug);
+            // if (catchedBug != null)
+            // {
+            //     Destroy(catchedBug);
+            // }
 
             return;
         }
@@ -148,13 +151,13 @@ public class FrogAttack : MonoBehaviour
             if (TrueIsLeft)
             {
                 Vector3 newPosition = tongue.position;
-                newPosition.x -= 0.2f;
+                newPosition.x -= 0.25f;
                 tongue.position = newPosition;
             }
             else
             {
                 Vector3 newPosition = tongue.position;
-                newPosition.x += 0.2f;
+                newPosition.x += 0.25f;
                 tongue.position = newPosition;
             }
         }
