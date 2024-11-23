@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
         Instance = this; // 현재 인스턴스를 정적 변수에 할당
         Score = 0;
         SetDifficulty();
+        // PlayerPrefs.SetInt("HighScore", 0);
     }
 
     public void GameStart()
@@ -53,7 +54,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("GameManager :: Game End!");
         isPlaying = false;
-        SoundManager.Instance.PlayEndGame();
         Instantiate(EndGameManager);
     }
 

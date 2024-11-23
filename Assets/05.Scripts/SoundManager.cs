@@ -8,7 +8,8 @@ public class SoundManager : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField] private AudioClip start;
     [SerializeField] private AudioClip attack;
-    [SerializeField] private AudioClip endgame;
+    [SerializeField] private AudioClip newhighscore;
+    [SerializeField] private AudioClip gameover;
     [SerializeField] private AudioClip earnScore;
 
     // Start is called before the first frame update
@@ -28,9 +29,14 @@ public class SoundManager : MonoBehaviour
         audioSource.PlayOneShot(attack);
     }
 
-    public void PlayEndGame()
+    public void PlayNewHighScore()
     {
-        audioSource.PlayOneShot(endgame);
+        audioSource.PlayOneShot(newhighscore);
+    }
+
+    public void PlayGameOver()
+    {
+        audioSource.PlayOneShot(gameover);
     }
 
     public void PlayEarnScore()

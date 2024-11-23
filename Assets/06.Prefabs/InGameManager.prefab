@@ -272,7 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeText: {fileID: 546758182025630375}
   ScoreText: {fileID: 1077809857040162133}
-  time: 60
+  time: 10
   fly: {fileID: 6581363497576515732, guid: b6125502ec275384a84efc712ad4ba09, type: 3}
   holeArea: {fileID: 3529937400987842959}
   outerArea: {fileID: 8152139888902180546}
