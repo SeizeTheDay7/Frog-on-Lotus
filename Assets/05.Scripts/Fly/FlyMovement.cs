@@ -19,7 +19,7 @@ public class RandomFlying : MonoBehaviour
         sec_count = 0;
         flyingArea = GameObject.FindWithTag("flyingArea");
         flyingBounds = flyingArea.GetComponent<SpriteRenderer>().bounds;
-        speed = 5 * GameManager.Instance.difficulty;
+        speed = 3 * GameManager.Instance.difficulty;
         speed = RandomChoice((int)speed, -(int)speed);
         Center = RandomCenter();
     }
@@ -33,7 +33,7 @@ public class RandomFlying : MonoBehaviour
         {
             sec_count = 0;
             Center = RandomCenter();
-            speed = 5 * GameManager.Instance.difficulty;
+            speed = 3 * GameManager.Instance.difficulty;
             speed = RandomChoice((int)speed, -(int)speed);
             // Debug.Log("New Center : " + Center);
         }

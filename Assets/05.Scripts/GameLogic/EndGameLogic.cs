@@ -21,6 +21,13 @@ public class EndGameLogic : MonoBehaviour
 
     private void Restart()
     {
+        // 자식들을 모두 삭제
+        GameManager.Instance.flyCount = 0;
+        // 모든 파리 삭제
+        foreach (GameObject fly in GameObject.FindGameObjectsWithTag("Fly"))
+        {
+            Destroy(fly);
+        }
         GameManager.Instance.GameStart();
         Destroy(gameObject);
     }

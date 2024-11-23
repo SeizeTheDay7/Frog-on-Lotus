@@ -71,8 +71,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ba670cc3ef143c14a878b437f3d9f402, type: 2}
-  m_sharedMaterial: {fileID: 2079404245315660003, guid: ba670cc3ef143c14a878b437f3d9f402, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6781d65d953b03849a099e457e942653, type: 2}
+  m_sharedMaterial: {fileID: 2907025499575741780, guid: 6781d65d953b03849a099e457e942653, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeText: {fileID: 546758182025630375}
   ScoreText: {fileID: 1077809857040162133}
-  time: 1000
+  time: 60
   fly: {fileID: 6581363497576515732, guid: b6125502ec275384a84efc712ad4ba09, type: 3}
   holeArea: {fileID: 3529937400987842959}
   outerArea: {fileID: 8152139888902180546}
@@ -532,8 +532,8 @@ MonoBehaviour:
 
     0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ba670cc3ef143c14a878b437f3d9f402, type: 2}
-  m_sharedMaterial: {fileID: 2079404245315660003, guid: ba670cc3ef143c14a878b437f3d9f402, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6781d65d953b03849a099e457e942653, type: 2}
+  m_sharedMaterial: {fileID: 2907025499575741780, guid: 6781d65d953b03849a099e457e942653, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

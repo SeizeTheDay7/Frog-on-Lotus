@@ -8,10 +8,11 @@ public class GameManager : MonoBehaviour
     public int Score;
     public int flyCount;
     public int difficulty;
+    public bool isPlaying = false;
     [SerializeField] private GameObject InGameManager;
     private InGameLogic inGameLogic;
     [SerializeField] private GameObject EndGameManager;
-    private EndGameLogic endGameLogic;
+
 
     private void Awake()
     {
@@ -23,28 +24,42 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         Debug.Log("GameManager :: Game Start!");
+
+        SoundManager.Instance.PlayStart();
+
+        isPlaying = true;
         Score = 0;
         SetDifficulty();
+
         inGameLogic = Instantiate(InGameManager).GetComponent<InGameLogic>();
     }
 
     public void AddScore()
     {
+        if (!isPlaying)
+        {
+            return;
+        }
+        SoundManager.Instance.PlayEarnScore();
+
         Score += 1;
         flyCount -= 1;
         SetDifficulty();
+
         inGameLogic.NewFly();
     }
 
     public void GameEnd()
     {
         Debug.Log("GameManager :: Game End!");
+        isPlaying = false;
+        SoundManager.Instance.PlayEndGame();
         Instantiate(EndGameManager);
     }
 
     private void SetDifficulty()
     {
-        difficulty = 1 + (int)Mathf.Log(1 + Score, 2f);
+        difficulty = 1 + (int)Mathf.Log(1 + Score, 3f);
         Debug.Log("GameManager :: difficulty : " + difficulty);
     }
 }

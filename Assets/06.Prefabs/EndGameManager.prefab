@@ -172,8 +172,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ba670cc3ef143c14a878b437f3d9f402, type: 2}
-  m_sharedMaterial: {fileID: 2079404245315660003, guid: ba670cc3ef143c14a878b437f3d9f402, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6781d65d953b03849a099e457e942653, type: 2}
+  m_sharedMaterial: {fileID: 2907025499575741780, guid: 6781d65d953b03849a099e457e942653, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -548,8 +548,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Restart
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ba670cc3ef143c14a878b437f3d9f402, type: 2}
-  m_sharedMaterial: {fileID: 2079404245315660003, guid: ba670cc3ef143c14a878b437f3d9f402, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6781d65d953b03849a099e457e942653, type: 2}
+  m_sharedMaterial: {fileID: 2907025499575741780, guid: 6781d65d953b03849a099e457e942653, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -660,6 +660,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b04626f6ea727f946a6e47bb05dbc460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EndGameUI: {fileID: 1457324361242454914}
   RestartButtonObj: {fileID: 1821016782427778120}
   ExitButtonObj: {fileID: 2550066217223466302}
