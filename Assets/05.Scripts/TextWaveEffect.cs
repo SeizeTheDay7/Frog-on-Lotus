@@ -1,20 +1,15 @@
-
 using UnityEngine;
 using TMPro;
 
-public class WaveEffect : MonoBehaviour
+public class TextWaveEffect : MonoBehaviour
 {
     public TextMeshProUGUI tmpText;
     public float waveSpeed = 2f;
     public float amplitude = 5f;
 
-    void Start()
-    {
-        tmpText = GetComponent<TextMeshProUGUI>();
-    }
-
     private void Update()
     {
+        tmpText = GetComponent<TextMeshProUGUI>();
         tmpText.ForceMeshUpdate();
         var textInfo = tmpText.textInfo;
 

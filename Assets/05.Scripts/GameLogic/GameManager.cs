@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
         Instance = this; // 현재 인스턴스를 정적 변수에 할당
         Score = 0;
         SetDifficulty();
-        // PlayerPrefs.SetInt("HighScore", 0);
+        PlayerPrefs.SetInt("HighScore", 0);
     }
 
     public void GameStart()

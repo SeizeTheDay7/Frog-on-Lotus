@@ -24,11 +24,16 @@ public class EndGameLogic : MonoBehaviour
         ExitButton.onClick.AddListener(Exit);
 
         YourScore.text = "Your Score : " + GameManager.Instance.Score.ToString();
-        HighScore.text = "High Score : " + PlayerPrefs.GetInt("HighScore", 0).ToString();
+        HighScore.text = "Prev High : " + PlayerPrefs.GetInt("HighScore", 0).ToString();
 
         if (GameManager.Instance.Score > PlayerPrefs.GetInt("HighScore", 0))
         {
+            YourScore.text = "<color=#FFFF00>Your Score : " + GameManager.Instance.Score.ToString() + "</color>";
+            YourScore.gameObject.AddComponent<TextScaleEffect>();
+
             PlayerPrefs.SetInt("HighScore", GameManager.Instance.Score);
+            PlayerPrefs.Save();
+
             NewHighScore.SetActive(true);
             SoundManager.Instance.PlayNewHighScore();
         }
