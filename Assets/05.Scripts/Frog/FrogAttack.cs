@@ -78,7 +78,16 @@ public class FrogAttack : MonoBehaviour
             SoundManager.Instance.PlayAttack();
 
             // 클릭 당시 혀와 마우스의 위치를 설정하고 각도를 구한다.
-            mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            if (Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
+                mousePos = Camera.main.ScreenToWorldPoint(touch.position);
+            }
+            else
+            {
+                mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            }
+            Debug.Log("mousePos : " + mousePos);
             FlipCharacter();
             tonguePos = tongue.position;
 
