@@ -87,7 +87,7 @@ public class FrogAttack : MonoBehaviour
             {
                 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             }
-            Debug.Log("mousePos : " + mousePos);
+            // Debug.Log("mousePos : " + mousePos);
             FlipCharacter();
             tonguePos = tongue.position;
 
@@ -128,7 +128,7 @@ public class FrogAttack : MonoBehaviour
 
     private void ShrinkTongue()
     {
-        if (tongueSR.size.x <= 0)
+        if (tongueSR.size.x <= 0.1)
         {
             isAttacking = false;
             animator.SetBool("isAttacking", false);
