@@ -5,19 +5,28 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
-    private AudioSource audioSource;
+    private AudioSource bgmSource;
     [SerializeField] private int audioSourceSize = 5;
     private List<AudioSource> audioSourceList;
+    [SerializeField] private AudioClip bgm;
     [SerializeField] private AudioClip start;
     [SerializeField] private AudioClip attack;
-    [SerializeField] private AudioClip newhighscore;
-    [SerializeField] private AudioClip gameover;
+    [SerializeField] private AudioClip clear;
+    [SerializeField] private AudioClip fail;
     [SerializeField] private AudioClip earnScore;
 
     void Awake()
     {
-        Instance = this;
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+
         audioSourceList = new List<AudioSource>();
+
+        bgmSource = gameObject.AddComponent<AudioSource>();
+        bgmSource.clip = bgm;
+        bgmSource.loop = true;
+        bgmSource.Play();
+
         for (int i = 0; i < audioSourceSize; i++)
         {
             AudioSource src = gameObject.AddComponent<AudioSource>();
@@ -37,31 +46,31 @@ public class SoundManager : MonoBehaviour
         return newsrc;
     }
 
-    public void PlayStart()
+    public void PlayStartSFX()
     {
         AudioSource src = GetFreeAS();
         src.clip = start;
         src.Play();
     }
 
-    public void PlayAttack()
+    public void PlayAttackSFX()
     {
         AudioSource src = GetFreeAS();
         src.clip = attack;
         src.Play();
     }
 
-    public void PlayNewHighScore()
+    public void PlayClearSFX()
     {
         AudioSource src = GetFreeAS();
-        src.clip = newhighscore;
+        src.clip = clear;
         src.Play();
     }
 
-    public void PlayGameOver()
+    public void PlayFailSFX()
     {
         AudioSource src = GetFreeAS();
-        src.clip = gameover;
+        src.clip = fail;
         src.Play();
     }
 
@@ -72,8 +81,19 @@ public class SoundManager : MonoBehaviour
         src.Play();
     }
 
+    public void BGMStart()
+    {
+        bgmSource.Play();
+    }
+
     public void BGMStop()
     {
-        audioSource.Stop();
+        bgmSource.Stop();
+    }
+
+    public void StopAllSound()
+    {
+        BGMStop();
+        foreach (AudioSource src in audioSourceList) src.Stop();
     }
 }

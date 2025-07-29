@@ -78,6 +78,7 @@ public class AdManager : MonoBehaviour
         if (_interstitialAd != null && _interstitialAd.CanShowAd())
         {
             Debug.Log("Showing interstitial ad.");
+            StageManager.Instance.StopGame();
             _interstitialAd.Show();
         }
         else
@@ -114,6 +115,7 @@ public class AdManager : MonoBehaviour
         interstitialAd.OnAdFullScreenContentClosed += () =>
         {
             Debug.Log("Interstitial ad full screen content closed.");
+            StageManager.Instance.ContinueGame();
         };
         // Raised when the ad failed to open full screen content.
         interstitialAd.OnAdFullScreenContentFailed += (AdError error) =>
@@ -123,6 +125,8 @@ public class AdManager : MonoBehaviour
         };
     }
 
+    // 닫히거나 로딩 실패했을 때 알아서 로딩하는 리로드 핸들러
+    // 굳이 로직을 더 추가하지는 말고 이벤트 핸들러에서 처리할 것
     private void RegisterReloadHandler(InterstitialAd interstitialAd)
     {
         // Raised when the ad closed full screen content.

@@ -21,8 +21,8 @@ public class FrogAttack : MonoBehaviour
     private float angle;
     private float targetLength;
     [SerializeField] private float tongueSpeed = 10f;
-    private bool nowRight;
     private CircleCollider2D tongueCollider;
+    private bool canAttack;
     private GameObject catchedBug;
 
     void Awake()
@@ -39,26 +39,28 @@ public class FrogAttack : MonoBehaviour
         animator = GetComponent<Animator>();
 
         tongueCollider = tongue.GetComponent<CircleCollider2D>();
-
-        // 콜라이더 비활성화
-        tongueCollider.enabled = false;
+        // DisableAttack();
+        EnableAttack();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Debug.Log("Trigger entered by: " + other.gameObject.name);
-        GameManager.Instance.AddScore();
         arrivedPoint = true;
-        catchedBug = other.gameObject;
+        EnemyManager.Instance.DestroyEnemy(other.gameObject);
+        StageManager.Instance.CheckClear();
     }
 
+    public void EnableAttack()
+    {
+        tongueCollider.enabled = true;
+        canAttack = true;
+    }
 
-    // 혀의 위치로부터 마우스 클릭 위치까지 각도를 구한 뒤에,
-    // 각도만큼 돌린 후에 거리만큼 늘리면 됨.
-
-    // 혀 공격 중이라면 점에 닿을 때까지 늘려야 하고
-    // 혀 공격이 달성됐다면 다시 줄여야 함
-    // 늘리거나 줄이는 건 Time.deltaTime만큼
+    public void DisableAttack()
+    {
+        tongueCollider.enabled = false;
+        canAttack = false;
+    }
 
     void Update()
     {
@@ -73,45 +75,44 @@ public class FrogAttack : MonoBehaviour
                 ShrinkTongue();
 
         }
-        else if (AttackAction.triggered)
+        else if (canAttack && AttackAction.triggered)
         {
-            SoundManager.Instance.PlayAttack();
-
-            // 클릭 당시 혀와 마우스의 위치를 설정하고 각도를 구한다.
-            if (Input.touchCount > 0)
-            {
-                Touch touch = Input.GetTouch(0);
-                mousePos = Camera.main.ScreenToWorldPoint(touch.position);
-            }
-            else
-            {
-                mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            }
-            // Debug.Log("mousePos : " + mousePos);
-            FlipCharacter();
-            tonguePos = tongue.position;
-
-            direction = mousePos - tonguePos;
-            direction.z = 0; // magnitude 왜곡 방지
-            targetLength = direction.magnitude;
-
-            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-            // Debug.Log("tongePos : " + tonguePos);
-            // Debug.Log("direction : " + direction);
-            // Debug.Log("targetLength : " + targetLength);
-
-            // 각도만큼 혀를 돌린다
-            tongue.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-
-            // 애니메이션을 위한 변수들 설정
-            isAttacking = true;
-            animator.SetBool("isAttacking", true);
-            arrivedPoint = false;
-
-            // 혀로 파리 붙잡을 콜라이더 활성화
-            tongueCollider.enabled = true;
+            StartAttack();
         }
+    }
+
+    private void StartAttack()
+    {
+        SoundManager.Instance.PlayAttackSFX();
+
+        // 클릭 당시 혀와 마우스 또는 터치의 위치를 설정하고 각도를 구한다.
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            mousePos = Camera.main.ScreenToWorldPoint(touch.position);
+        }
+        else
+        {
+            mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        }
+        // Debug.Log("mousePos : " + mousePos);
+        FlipCharacter();
+        tonguePos = tongue.position;
+
+        direction = mousePos - tonguePos;
+        direction.z = 0; // magnitude 왜곡 방지
+        targetLength = direction.magnitude;
+
+        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        tongue.rotation = Quaternion.Euler(new Vector3(0, 0, angle)); // 각도만큼 혀를 돌린다
+
+        // 애니메이션을 위한 변수들 설정
+        isAttacking = true;
+        animator.SetBool("isAttacking", true);
+        arrivedPoint = false;
+
+        // 혀로 파리 붙잡을 콜라이더 활성화
+        tongueCollider.enabled = true;
     }
 
     private void StretchTongue()
@@ -151,12 +152,6 @@ public class FrogAttack : MonoBehaviour
     private void FlipCharacter()
     {
         bool TrueIsLeft = (mousePos.x - tongue.position.x < 0) ? true : false;
-
-        // Debug.Log("mousePos x : " + mousePos.x);
-        // Debug.Log("tonuge.position.x : " + tongue.position.x);
-
-        // Debug.Log("TrueIsLeft : " + TrueIsLeft);
-        // Debug.Log("flipX : " + frogSR.flipX);
 
         if (frogSR.flipX != TrueIsLeft)
         {

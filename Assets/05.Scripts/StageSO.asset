@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0721a63c6c6f5246855572e448efd91, type: 3}
+  m_Name: StageSO
+  m_EditorClassIdentifier: 
+  stageInfoList:
+  - difficulty: 1
+    enemyinfo:
+      fly: 1
+      bee: 0
+      butterfly: 0
+  - difficulty: 2
+    enemyinfo:
+      fly: 2
+      bee: 0
+      butterfly: 0
+  - difficulty: 3
+    enemyinfo:
+      fly: 3
+      bee: 0
+      butterfly: 0

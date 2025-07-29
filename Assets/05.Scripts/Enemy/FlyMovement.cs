@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomFlying : MonoBehaviour
+public class FlyMovement : MonoBehaviour, EnemyMove
 {
+    [SerializeField] private float speed = 20f;
     private Vector3 fall_v;
     private Vector3 moving_v;
-    [SerializeField] private Vector3 Center;
-    [SerializeField] private float speed = 20f;
-    [SerializeField] private float grav = 10f;
+    private Vector3 Center;
     private float sec_count;
     private GameObject flyingArea;
     private Bounds flyingBounds;
@@ -19,9 +18,13 @@ public class RandomFlying : MonoBehaviour
         sec_count = 0;
         flyingArea = GameObject.FindWithTag("flyingArea");
         flyingBounds = flyingArea.GetComponent<SpriteRenderer>().bounds;
-        speed = 3 * GameManager.Instance.difficulty;
         speed = RandomChoice((int)speed, -(int)speed);
         Center = RandomCenter();
+    }
+
+    public void SetSpeed(float difficulty)
+    {
+        speed = 3 * difficulty;
     }
 
     void Update()
@@ -33,7 +36,6 @@ public class RandomFlying : MonoBehaviour
         {
             sec_count = 0;
             Center = RandomCenter();
-            speed = 3 * GameManager.Instance.difficulty;
             speed = RandomChoice((int)speed, -(int)speed);
             // Debug.Log("New Center : " + Center);
         }
@@ -55,11 +57,5 @@ public class RandomFlying : MonoBehaviour
     int RandomChoice(int value1, int value2)
     {
         return Random.Range(0, 2) == 0 ? value1 : value2;
-    }
-
-    private void OnTriggerEnter2D(Collider2D tongue)
-    {
-        if (tongue.gameObject.name == "tongue")
-            Destroy(gameObject);
     }
 }
