@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     void Awake()
     {
         if (Instance == null) Instance = this;
-        else if (Instance != this) Destroy(gameObject);
+        else Destroy(gameObject);
     }
 
     public void CloseAllUI()
