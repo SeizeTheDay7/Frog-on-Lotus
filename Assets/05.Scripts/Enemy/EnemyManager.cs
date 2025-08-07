@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour
     void Start()
     {
         if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        else if (Instance != this) Destroy(gameObject);
 
         bound = boundArea.GetComponent<SpriteRenderer>().bounds;
     }
@@ -55,19 +55,6 @@ public class EnemyManager : MonoBehaviour
             Destroy(enemy);
         }
         else Debug.LogError("[EnemyManager][DestroyEnemy] Enemy not found in list");
-    }
-
-    // 클리어 체크에 사용됨
-    public bool AreAllEnemyDead()
-    {
-        if (enemyList.Count == 0) return true;
-        else return false;
-    }
-
-    // 적 전부 없애기
-    public void ResetAllEnemy()
-    {
-        foreach (GameObject go in enemyList) Destroy(go);
     }
 
     private Vector2 GetRandomSpawnPosition()

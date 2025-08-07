@@ -18,7 +18,7 @@ public class SoundManager : MonoBehaviour
     void Awake()
     {
         if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        else if (Instance != this) Destroy(gameObject);
 
         audioSourceList = new List<AudioSource>();
 
