@@ -45,9 +45,9 @@ public class FrogAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag != "Enemy") return;
         arrivedPoint = true;
         EnemyManager.Instance.DestroyEnemy(other.gameObject);
+        StageManager.Instance.CheckClear();
     }
 
     public void EnableAttack()
