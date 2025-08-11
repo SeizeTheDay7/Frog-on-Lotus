@@ -46,13 +46,13 @@ public class FrogAttack : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         arrivedPoint = true;
+        SoundManager.Instance.PlayEarnScore();
         EnemyManager.Instance.DestroyEnemy(other.gameObject);
-        StageManager.Instance.CheckClear();
+        GameManager.Instance.CheckClear();
     }
 
     public void EnableAttack()
     {
-        tongueCollider.enabled = true;
         canAttack = true;
     }
 

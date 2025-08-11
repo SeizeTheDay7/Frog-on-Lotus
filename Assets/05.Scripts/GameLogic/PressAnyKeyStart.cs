@@ -6,7 +6,7 @@ public class PressAnyKeyStart : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            StageManager.Instance.StageStart();
+            GameManager.Instance.StageStart();
             Destroy(gameObject);
         }
     }

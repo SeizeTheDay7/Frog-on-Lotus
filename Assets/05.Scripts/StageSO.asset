@@ -15,16 +15,16 @@ MonoBehaviour:
   stageInfoList:
   - difficulty: 1
     enemyinfo:
-      fly: 1
+      fly: 3
       bee: 0
       butterfly: 0
   - difficulty: 2
     enemyinfo:
-      fly: 2
+      fly: 5
       bee: 0
       butterfly: 0
   - difficulty: 3
     enemyinfo:
-      fly: 3
+      fly: 7
       bee: 0
       butterfly: 0

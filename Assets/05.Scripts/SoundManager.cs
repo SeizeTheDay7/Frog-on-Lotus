@@ -14,6 +14,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip clear;
     [SerializeField] private AudioClip fail;
     [SerializeField] private AudioClip earnScore;
+    [SerializeField] private AudioClip showStage;
 
     void Awake()
     {
@@ -78,6 +79,13 @@ public class SoundManager : MonoBehaviour
     {
         AudioSource src = GetFreeAS();
         src.clip = earnScore;
+        src.Play();
+    }
+
+    public void PlayShowStage()
+    {
+        AudioSource src = GetFreeAS();
+        src.clip = showStage;
         src.Play();
     }
 

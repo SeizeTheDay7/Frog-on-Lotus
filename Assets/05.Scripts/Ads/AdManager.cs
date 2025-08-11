@@ -78,7 +78,7 @@ public class AdManager : MonoBehaviour
         if (_interstitialAd != null && _interstitialAd.CanShowAd())
         {
             Debug.Log("Showing interstitial ad.");
-            StageManager.Instance.StopGame();
+            GameManager.Instance.StopGame();
             _interstitialAd.Show();
         }
         else
@@ -115,7 +115,7 @@ public class AdManager : MonoBehaviour
         interstitialAd.OnAdFullScreenContentClosed += () =>
         {
             Debug.Log("Interstitial ad full screen content closed.");
-            StageManager.Instance.ContinueGame();
+            StartCoroutine(GameManager.Instance.NextStage());
         };
         // Raised when the ad failed to open full screen content.
         interstitialAd.OnAdFullScreenContentFailed += (AdError error) =>
